@@ -33,27 +33,28 @@ grbgetkey xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 
 ## Usage Example
 
-Create new OSCP object (automatically executes the OSCP algorithm):
+**Create new OSCP object** (automatically executes the OSCP algorithm):
 ```
 oscp = OSCP(pred_Y, real_Y, norm=2, tolerance=0.05, split_ratio=0.5, optTimeLimit=1000)
 ```
 
-Check results:
+**Typical Usage**:
 ```
 print("Radii of the CP-regions: ", oscp.cp_radii) # CP regions are in norm-ball shapes
-print("Prediction errors at all time-steps lie inside CP-regions: ", oscp.is_in_cp_region(pred_Y_test, real_Y_test)) 
+print("Real Y values at all time-steps lie within CP-regions of the predicted Y: ", oscp.is_in_cp_region(pred_Y_test, real_Y_test)) 
 print("Empirical coverage on test-set: ", oscp.emp_coverage(pred_Y_test, real_Y_test))
 ```
-Output:
+Output of above:
 ```
 Radii of the CP-regions: [204.71043918 246.8841168 ... 235.55333146]
-Prediction errors at all time-steps lie inside CP-regions: [True True ... False]
+Real Y values at all time-steps lie within CP-regions of the predicted Y: [True True ... False]
 Empirical coverage on test-set: 0.973
 ```
-Visualization: 
+**Visualization**: 
 ```
 # Visualization currently only supports d=2 and norm=2
 oscp.visualize_2D_circular_conformal_region(pred_Y_test, real_Y_test, 5) # visualize CP region at t = 5 (starts at 0)
 ```
-
-![Example_result](figs/example.svg)
+<p align="center">
+  <img src="figs/example.svg" width="60%">
+</p>
