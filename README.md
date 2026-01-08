@@ -1,6 +1,6 @@
 # Optimal Selection Conformal Prediction (OSCP) [[Paper]](https://arxiv.org/abs/2511.02103)
 
-Error quantification in multi-dimensional time-series predictions using conformal prediction, with the focus on multiple time-series case (i.e., input: `multiple i.i.d. time-series`) and providing joint-in-time probabilistic guarantee. The resulting confidence regions are norm-balls (e.g., $l_2$ balls, $l_1$ cubes, ellipsoids, etc.).
+Error quantification in multi-dimensional time-series predictions using conformal prediction, with the focus on multiple time-series case (i.e., input: **multiple i.i.d. time-series data**) and providing joint-in-time probabilistic guarantee. The resulting confidence regions are norm-balls (e.g., $l_2$ balls, $l_1$ cubes, ellipsoids, etc.).
 
 ---
 
@@ -32,8 +32,14 @@ grbgetkey xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 ```
 
 ## Usage Example
+
+Create new OSCP object (automatically executes the OSCP algorithm):
 ```
-oscp = OSCP(pred_Y, real_Y, norm=2, tolerance=0.05, split_ratio=0.5, optTimeLimit=1000) 
+oscp = OSCP(pred_Y, real_Y, norm=2, tolerance=0.05, split_ratio=0.5, optTimeLimit=1000)
+```
+
+Check results:
+```
 print("Radii of the CP-regions: ", oscp.cp_radii) # CP regions are in norm-ball shapes
 print("Prediction errors at all time-steps lie inside CP-regions: ", oscp.is_in_cp_region(pred_Y_test, real_Y_test)) 
 print("Empirical coverage on test-set: ", oscp.emp_coverage(pred_Y_test, real_Y_test))
@@ -44,3 +50,10 @@ Radii of the CP-regions: [204.71043918 246.8841168 ... 235.55333146]
 Prediction errors at all time-steps lie inside CP-regions: [True True ... False]
 Empirical coverage on test-set: 0.973
 ```
+Visualization: 
+```
+# Visualization currently only supports d=2 and norm=2
+oscp.visualize_2D_circular_conformal_region(pred_Y_test, real_Y_test, 5) # visualize CP region at t = 5 (starts at 0)
+```
+
+![Example_result](figs/example.svg)
