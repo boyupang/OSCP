@@ -236,7 +236,7 @@ class OSCP:
             raise ValueError("Pred_Y and Real_Y must have shape = (time_steps, d) or (n_samples, time_steps, d)")
         # draw a circle with center at Pred_Y[t] and radius = cp_radii[t]
         # also plot the real_Y[t] on the same plot
-        plt.scatter(0, 0, color='blue', label='Predicted Y')
+        
         lower_lim_x, upper_lim_x, lower_lim_y, upper_lim_y = -self.cp_radii[t], self.cp_radii[t], -self.cp_radii[t], self.cp_radii[t]
         
         if len(real_Y.shape) == 3:
@@ -252,18 +252,19 @@ class OSCP:
             min(lower_lim_y, real_Y[t, 1]-pred_Y[t, 1]), max(upper_lim_y, real_Y[t, 1]-pred_Y[t, 1])
         circle = Circle((0, 0), self.cp_radii[t], color='green', alpha=0.5)
         plt.gca().add_artist(circle)
-
+        plt.scatter(0, 0, color='blue', label='Predicted Y')
        
         
         plt.xlim(lower_lim_x, upper_lim_x)
         plt.ylim(lower_lim_y, upper_lim_y)
         plt.gca().set_aspect('equal', adjustable='box')
         plt.title(f'CP Region at time step {t}, epsilon={self.tolerance}')
-        plt.xlabel('X-axis')
-        plt.ylabel('Y-axis')
+        plt.xlabel('Axis-1')
+        plt.ylabel('Axis-2')
         plt.legend()
         plt.grid()
         plt.show()
+        # plt.savefig(f'example.svg', dpi=300)
 
         
 
@@ -335,7 +336,7 @@ if __name__ == "__main__":
     print("Prediction errors at all time-steps lie inside CP-regions: ", oscp.is_in_cp_region(pred_Y_test, real_Y_test))
     print("Empirical coverage on test-set: ", oscp.emp_coverage(pred_Y_test, real_Y_test))
 
-    # Visualization (currently only support d=2)
+    # Visualization (currently only support d=2 and norm=2)
     oscp.visualize_2D_circular_conformal_region(pred_Y_test, real_Y_test, 5) # visualize CP region at t = 5 (starts at 0)
 
             
