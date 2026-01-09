@@ -44,7 +44,7 @@ print("Radii of the CP-regions: ", oscp.cp_radii) # CP regions are in norm-ball 
 print("Real Y values at all time-steps lie within CP-regions of the predicted Y: ", oscp.is_in_cp_region(pred_Y_test, real_Y_test)) 
 print("Empirical coverage on test-set: ", oscp.emp_coverage(pred_Y_test, real_Y_test))
 ```
-Output of above:
+The output above:
 ```
 Radii of the CP-regions: [204.71043918 246.8841168 ... 235.55333146]
 Real Y values at all time-steps lie within CP-regions of the predicted Y: [True True ... False]
