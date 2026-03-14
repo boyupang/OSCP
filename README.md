@@ -1,6 +1,7 @@
 # Optimal Selection Conformal Prediction (OSCP) [[Paper]](https://arxiv.org/abs/2511.02103)
+Implementation of the method OSCP. This work has been accepted for presentation at the European Control Conference (ECC) 2026.
 
-Error quantification in multi-dimensional time-series predictions using conformal prediction, with the focus on multiple time-series case (i.e., input: **multiple i.i.d. time-series data**) and providing joint-in-time probabilistic guarantee. The resulting confidence regions are norm-balls (e.g., $l_2$ balls, $l_1$ cubes, ellipsoids, etc.).
+OSCP addresses error quantification in multi-dimensional time-series predictions using conformal prediction, with the focus on multiple time-series case (i.e., input: **multiple i.i.d. time-series data**) and providing joint-in-time probabilistic guarantee. The resulting confidence regions are norm-balls (e.g., $l_2$ balls, $l_1$ cubes, ellipsoids, etc.).
 
 ---
 
