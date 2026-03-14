@@ -161,7 +161,7 @@ class OSCP:
         # set up the objective function
         m.setObjective(gp.quicksum(r[t] for t in range(self.T)), gp.GRB.MINIMIZE)
         # set up the constraints
-        m.addConstrs(b[i]*(self.residual[s[i]][t] - r[t])<=0 for t in range(self.T) for i in range(len(s)))
+        m.addConstrs(b[i]*self.residual[s[i]][t] <= r[t] for t in range(self.T) for i in range(len(s)))
         m.addConstr(gp.quicksum(b[i] for i in range(len(s))) ==  p - len(s1))
 
         # add the heuristic solution as a warm start to speed up the optimization
